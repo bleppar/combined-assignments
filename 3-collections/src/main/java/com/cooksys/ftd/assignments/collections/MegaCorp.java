@@ -9,6 +9,7 @@ import java.util.*;
 
 public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 
+	
     /**
      * Adds a given element to the hierarchy.
      * <p>

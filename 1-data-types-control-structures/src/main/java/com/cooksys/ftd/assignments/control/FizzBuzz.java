@@ -1,5 +1,6 @@
 package com.cooksys.ftd.assignments.control;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -26,7 +27,11 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (b == 0) {
+        	throw new IllegalArgumentException("IllegalArgumentException Occured");
+        }
+    	
+        	return a % b == 0;
     }
 
     /**
@@ -41,7 +46,16 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+      
+    	 if (n % 3 == 0 && n % 5 == 0) 
+         	return (n + ": FizzBuzz");
+    	if (n % 3 == 0 ) 
+        	return (n + ": Fizz");
+       if (n % 5 == 0) 
+        	return (n + ": Buzz");
+        
+		return null;
+        
     }
 
     /**
@@ -55,7 +69,26 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+       if (end < start) {
+    	   throw new IllegalArgumentException ("IllegalArgumentException Occured");
+       }
+       int count = 0;
+       int temp = 0;
+       
+       for (int x= 0; x < end-start; x++) {
+    	 
+    	 String z = message(x+start);
+    	   if (z!=null)
+    		   ++count;
+       }
+       String [] returnArray = new String[count];
+       
+    	for (int i = 0; i < end-start; i++) {
+    		if (message(i+start) != null)
+    			returnArray[temp++] = message(i+start);
+    		
+    	}
+    	return returnArray;
     }
 
     /**
@@ -63,7 +96,8 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new NotImplementedException();
+    		for (String temp : messages(1,115))
+    		System.out.println(temp);
     }
 
 }
