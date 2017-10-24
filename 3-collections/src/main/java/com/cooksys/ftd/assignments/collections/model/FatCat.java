@@ -1,14 +1,12 @@
 package com.cooksys.ftd.assignments.collections.model;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class FatCat implements Capitalist {
 	
 	private String name;
 	
 	private int salary;
 	
-	private FatCat parent;
+	private FatCat owner;
 	
 
 
@@ -20,7 +18,7 @@ public class FatCat implements Capitalist {
     public FatCat(String name, int salary, FatCat owner) {
         this.name = name;
         this.salary = salary;
-        this.parent = owner;
+        this.owner = owner;
     }
 
     /**
@@ -28,7 +26,7 @@ public class FatCat implements Capitalist {
      */
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -36,7 +34,7 @@ public class FatCat implements Capitalist {
      */
     @Override
     public int getSalary() {
-       return this.salary;
+       return salary;
     }
 
     /**
@@ -47,7 +45,7 @@ public class FatCat implements Capitalist {
 
     @Override
     public boolean hasParent() {
-    	if( parent != null){
+    	if(owner!=null) {
     		return true;
     	}
     	return false;
@@ -60,9 +58,46 @@ public class FatCat implements Capitalist {
      */
     @Override
     public FatCat getParent() {
-        if(parent!=null){
-        	return parent;
+        if(this.hasParent()){
+        	return owner;
         }
         return null;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + salary;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FatCat other = (FatCat) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
+			return false;
+		if (salary != other.salary)
+			return false;
+		return true;
+	}
+
+	
+    
 }
